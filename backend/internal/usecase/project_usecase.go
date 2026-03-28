@@ -30,7 +30,6 @@ func (p *projectService) CreateProject(name, description string, userID uint) (*
 	project := &domain.Project{
 		Name:        name,
 		Description: description,
-		// Creator: ,
 		CreatedBy:   &userID,
 	}
 
