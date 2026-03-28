@@ -9,10 +9,9 @@ import (
 func FormatValidationError(err error) string {
 	var errors []string
 
-	// type cast
 	validationErrors, ok := err.(validator.ValidationErrors)
 	if !ok {
-		return err.Error() // fallback
+		return err.Error() 
 	}
 
 	for _, e := range validationErrors {
