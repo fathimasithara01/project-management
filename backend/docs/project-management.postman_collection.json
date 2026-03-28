@@ -25,16 +25,63 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/register",
+							"raw": "{{BASE_URL}}/auth/register",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
+								"auth",
 								"register"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"admin\",\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"admin1\",\r\n  \"role\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/register",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Mar 2026 09:06:09 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "138"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"message\": \"user registered successfully\",\n        \"user\": {\n            \"email\": \"admin@gmail.com\",\n            \"id\": 1,\n            \"name\": \"admin\",\n            \"role\": \"admin\"\n        }\n    },\n    \"success\": true\n}"
+						}
+					]
 				},
 				{
 					"name": "Login",
@@ -65,11 +112,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/login",
+							"raw": "{{BASE_URL}}/auth/login",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
+								"auth",
 								"login"
 							]
 						}
@@ -134,13 +182,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{BASE_URL}}/users/1",
+									"raw": "{{BASE_URL}}/users/{{user_id}}",
 									"host": [
 										"{{BASE_URL}}"
 									],
 									"path": [
 										"users",
-										"1"
+										"{{user_id}}"
 									]
 								}
 							},
@@ -238,7 +286,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"Ecommerce Backend\",\r\n  \"description\": \"Building a scalable backend using Go with Gin and GORM\"\r\n}"
+									"raw": "{\r\n  \"name\": \"Ecommerce Backend Application\",\r\n  \"description\": \"Building a scalable backend using Go with Gin and GORM\"\r\n}"
 								},
 								"url": {
 									"raw": "{{BASE_URL}}/projects",
@@ -413,7 +461,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"title\": \"Build login API\",\r\n  \"description\": \"Implement JWT login\",\r\n  \"project_id\": 1,\r\n  \"assignee_id\": 2,\r\n  \"status\": \"pending\"\r\n}",
+									"raw": "{\r\n  \"title\": \"LIST API and UPDATE\",\r\n  \"description\": \"Implement JWT login\",\r\n  \"project_id\": 1,\r\n  \"assigned_to\": 2,  \r\n  \"status\": \"todo\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -448,7 +496,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BASE_URL}}/tasks?page=1&limit=10&status=pending&project_id=1&assigned_to=2",
+									"raw": "{{BASE_URL}}/tasks?page=1&limit=10&status=done&project_id=1&assigned_to=2",
 									"host": [
 										"{{BASE_URL}}"
 									],
@@ -466,7 +514,7 @@
 										},
 										{
 											"key": "status",
-											"value": "pending"
+											"value": "done"
 										},
 										{
 											"key": "project_id",

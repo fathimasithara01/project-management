@@ -46,13 +46,13 @@ func SetupRoutes(
 
 	tasks := protected.Group("/tasks")
 	{
-		tasks.GET("/tasks", middleware.RoleMiddleware("admin", "developer"), taskHandler.ListTasks)
-		tasks.GET("/tasks/:id", middleware.RoleMiddleware("admin", "developer"), taskHandler.GetTaskByID)
-		tasks.PATCH("/tasks/:id/status", middleware.RoleMiddleware("admin", "developer"), taskHandler.UpdateTaskStatus)
+		tasks.GET("/", middleware.RoleMiddleware("admin", "developer"), taskHandler.ListTasks)
+		tasks.GET("/:id", middleware.RoleMiddleware("admin", "developer"), taskHandler.GetTaskByID)
+		tasks.PATCH("/:id/status", middleware.RoleMiddleware("admin", "developer"), taskHandler.UpdateTaskStatus)
 
-		tasks.POST("/tasks", middleware.RoleMiddleware("admin"), taskHandler.CreateTask)
-		tasks.PUT("/tasks/:id", middleware.RoleMiddleware("admin"), taskHandler.UpdateTask)
-		tasks.DELETE("/tasks/:id", middleware.RoleMiddleware("admin"), taskHandler.DeleteTask)
+		tasks.POST("/", middleware.RoleMiddleware("admin"), taskHandler.CreateTask)
+		tasks.PUT("/:id", middleware.RoleMiddleware("admin"), taskHandler.UpdateTask)
+		tasks.DELETE("/:id", middleware.RoleMiddleware("admin"), taskHandler.DeleteTask)
 	}
 
 }
