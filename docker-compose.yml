@@ -1,0 +1,30 @@
+services:
+  backend:
+    build: ./backend
+    container_name: go-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    env_file:
+      - ./backend/.env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+    restart: always  
+
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    environment:J
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: project-management   
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
