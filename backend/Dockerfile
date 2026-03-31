@@ -8,11 +8,10 @@ RUN go mod download
 
 COPY . .
 
-# cmd folder il main undennu assume cheyyunnu
 RUN go build -o main ./cmd
 
 # Run stage
-FROM debian:bookworm-slim
+FROM alpine:latest
 
 WORKDIR /app
 
