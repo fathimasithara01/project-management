@@ -1,5 +1,4 @@
-# Build stage
-FROM golang:1.25 AS builder
+FROM golang:1.22-alpine AS builder
 
 WORKDIR /app
 
@@ -8,14 +7,21 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o main ./cmd
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main ./cmd
 
-# Run stage
+
 FROM alpine:latest
 
 WORKDIR /app
 
+# security
+RUN adduser -D appuser
+
 COPY --from=builder /app/main .
+
+RUN chown appuser:appuser main
+
+USER appuser
 
 EXPOSE 8080
 
